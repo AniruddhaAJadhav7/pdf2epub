@@ -9,7 +9,7 @@ aiofiles==23.2.1
 docx2python==2.6.3
 
 ebooklib==0.17.1
-pdfminer.six==20170720
+# pdfminer.six==20170720
 python-docx==1.0.1
 
 
