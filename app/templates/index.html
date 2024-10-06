@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}PDF and Word to EPUB Converter - Home{% endblock %}
+
+{% block extra_css %}
+<style>
+    .converter-form {
+        background: linear-gradient(135deg, #f6f9fc 0%, #ffffff 100%);
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease;
+    }
+    .converter-form:hover {
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    }
+    .file-input-label {
+        display: inline-block;
+        padding: 8px 16px;
+        background-color: #e5e7eb;
+        color: #4b5563;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    .file-input-label:hover {
+        background-color: #d1d5db;
+    }
+    .file-input {
+        display: none;
+    }
+    .convert-button {
+        background-color: #3b82f6;
+        transition: background-color 0.3s ease, transform 0.1s ease;
+    }
+    .convert-button:hover {
+        background-color: #2563eb;
+    }
+    .convert-button:active {
+        transform: scale(0.98);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="max-w-lg mx-auto text-center">
+    <h1 class="text-4xl font-bold mb-6 text-gray-800">PDF and Word to EPUB Converter</h1>
+    <p class="mb-8 text-gray-600 text-lg">Upload your PDF or Word document to convert it to EPUB format quickly and easily.</p>
+    <form action="/convert" method="post" enctype="multipart/form-data" class="converter-form p-8">
+        <div class="mb-6">
+            <label class="file-input-label" for="file">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                </svg>
+                Choose a PDF or Word file
+            </label>
+            <input class="file-input" type="file" name="file" id="file" required accept=".pdf, .docx, .doc">
+            <p class="mt-2 text-sm text-gray-500" id="file-name"></p>
+        </div>
+        <button type="submit" class="convert-button text-white font-bold py-3 px-6 rounded-full text-lg">Convert to EPUB</button>
+    </form>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.getElementById('file').addEventListener('change', function(e) {
+        var fileName = e.target.files[0].name;
+        document.getElementById('file-name').textContent = 'Selected file: ' + fileName;
+    });
+</script>
+{% endblock %}
