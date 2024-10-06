@@ -4,6 +4,8 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import StreamingResponse
 from .converter import pdf_to_epub, docx_to_epub
 import io
+import pdfplumber
+# Rest of your code
 
 app = FastAPI()
 
